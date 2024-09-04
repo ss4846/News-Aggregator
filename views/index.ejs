@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="search">
+            <div class="search-by-title">
+                <form action="/search" method="GET">
+                    <input type="search" placeholder="Search" name="searchTerm" style="margin-right: -5px;">
+                    <button type="submit">Search</button>
+                </form>
+                
+                <form action="/sort-by-date" method="GET" type="submit">
+                    <button>Sort by date</button>
+                </form>
+            </div>
+
+            <form action="/news-by-date" method="GET">
+                <label for="news-date">Get News for Specific Date</label>
+                <input type="date" id="news-date" name="date">
+                <button type="submit">Get News</button>
+            </form>
+        </div>
+
+        <div class="news-section">
+            <h1 style="display: flex; justify-content: center;">Latest News</h1>
+            <div class="news-articles">
+                <% news.forEach((article)=>{ %>
+                    <div class="article">
+                        <a style="color: black;" target="_blank" href="<%= article.url %>"><h2><%= article.title %></h2></a>
+                        <p><%= article.description %></p>
+                        <p>Published at: <%= article.publishedAt %></p>
+                        <a href="<%= article.url %>" target="_blank">Read More</a>
+                    </div>
+                <% }); %>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>
